@@ -15,7 +15,7 @@
 
 ## Installation
 
-WARNING! You must have free port 80.
+WARNING! You must have a free port 80.
 
 Run the following commands:
 
