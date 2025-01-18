@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Src\Modules\Pets\Application\Services;
 
+use Src\Common\Exceptions\ApplicationException;
 use Src\Common\Exceptions\DomainException;
 use Src\Modules\Pets\Application\Dtos\CreatePetDto;
+use Src\Modules\Pets\Application\Dtos\UpdatePetDto;
 use Src\Modules\Pets\Domain\Entities\Pet;
 use Src\Modules\Pets\Domain\PetClient;
 use Src\Modules\Pets\Domain\ValueObjects\PetPhotos;
@@ -26,6 +28,28 @@ final readonly class PetService
         $pet = new Pet($this->petClient);
 
         $pet->create(
+            category: $dto->category,
+            name: $dto->name,
+            photos: new PetPhotos($dto->photos),
+            tags: new PetTags($dto->tags),
+            status: new PetStatus($dto->status)
+        );
+    }
+
+    /**
+     * @throws DomainException
+     * @throws ApplicationException
+     */
+    public function updatePet(UpdatePetDto $dto): void
+    {
+        if (!$this->getPetById($dto->id)) {
+            throw new ApplicationException("Pet {$dto->id} not exists!");
+        }
+
+        $pet = new Pet($this->petClient);
+
+        $pet->update(
+            id: $dto->id,
             category: $dto->category,
             name: $dto->name,
             photos: new PetPhotos($dto->photos),

@@ -28,7 +28,7 @@ final class PetSwaggerClient implements PetClient
      * @return bool
      * @throws InfrastructureException
      */
-    public function create(string $category, string $name, array $photos, array $tags, string $status): bool
+    public function createPet(string $category, string $name, array $photos, array $tags, string $status): bool
     {
         try {
             $response = $this->http->post('/pet', [
@@ -37,7 +37,7 @@ final class PetSwaggerClient implements PetClient
                 ],
                 'name' => $name,
                 'photoUrls' => $photos,
-                'tags' => $tags,
+                'tags' => array_map(fn(string $tag) => ['name' => $tag], $tags),
                 'status' => $status,
             ]);
 
@@ -76,6 +76,29 @@ final class PetSwaggerClient implements PetClient
             if ($response->notFound()) {
                 return false;
             }
+
+            return $response->successful();
+        } catch (ConnectionException $e) {
+            throw new InfrastructureException('Cannot connect to pets server.');
+        }
+    }
+
+    /**
+     * @throws InfrastructureException
+     */
+    public function updatePet(string $id, string $category, string $name, array $photos, array $tags, string $status): bool
+    {
+        try {
+            $response = $this->http->post('/pet', [
+                "id" => $id,
+                'category' => [
+                    'name' => $category
+                ],
+                'name' => $name,
+                'photoUrls' => $photos,
+                'tags' => array_map(fn(string $tag) => ['name' => $tag], $tags),
+                'status' => $status,
+            ]);
 
             return $response->successful();
         } catch (ConnectionException $e) {

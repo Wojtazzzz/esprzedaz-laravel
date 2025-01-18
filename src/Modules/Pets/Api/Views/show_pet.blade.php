@@ -39,6 +39,15 @@
 
 
     @if ($pet)
+        <div class="mb-4">
+            <a
+                href="{{ route('pets.edit', ['pet' => $pet['id']]) }}"
+                class="w-full inline-block text-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+                Edit pet
+            </a>
+        </div>
+
         <form action="{{ route('pets.destroy', ['pet' => $pet['id']]) }}" method="POST">
             @csrf
             @method('DELETE')

@@ -19,7 +19,19 @@ final readonly class Pet
 
     public function create(string $category, string $name, PetPhotos $photos, PetTags $tags, PetStatus $status): void
     {
-        $this->petClient->create(
+        $this->petClient->createPet(
+            category: $category,
+            name: $name,
+            photos: $photos->values,
+            tags: $tags->values,
+            status: $status->value
+        );
+    }
+
+    public function update(string $id, string $category, string $name, PetPhotos $photos, PetTags $tags, PetStatus $status): void
+    {
+        $this->petClient->updatePet(
+            id: $id,
             category: $category,
             name: $name,
             photos: $photos->values,
