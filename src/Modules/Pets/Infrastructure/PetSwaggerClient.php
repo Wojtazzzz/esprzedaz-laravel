@@ -46,4 +46,22 @@ final class PetSwaggerClient implements PetClient
             throw new InfrastructureException('Cannot connect to pets server.');
         }
     }
+
+    /**
+     * @throws InfrastructureException
+     */
+    public function getPetById(string $petId): array|false
+    {
+        try {
+            $response = $this->http->get("/pet/{$petId}");
+
+            if ($response->notFound()) {
+                return false;
+            }
+
+            return (array)$response->json();
+        } catch (ConnectionException $e) {
+            throw new InfrastructureException('Cannot connect to pets server.');
+        }
+    }
 }

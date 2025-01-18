@@ -34,4 +34,9 @@ final readonly class PetService
             status: new PetStatus($dto->status)
         );
     }
+
+    public function getPetById(string $id): array|false
+    {
+        return $this->petClient->getPetById($id);
+    }
 }

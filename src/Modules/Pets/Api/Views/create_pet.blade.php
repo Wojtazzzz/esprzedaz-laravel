@@ -20,7 +20,7 @@
         </ul>
     @endif
 
-    <form action="{{ route('pets.store')  }}" method="POST" class="space-y-4">
+    <form action="{{ route('pets.store') }}" method="POST" class="space-y-4">
         @csrf
         @method('POST')
 
@@ -74,7 +74,7 @@
             @include('common::button', [
                 'label' => 'Create',
                 'type' => 'submit',
-            ])`
+            ])
         </div>
     </form>
 </div>
