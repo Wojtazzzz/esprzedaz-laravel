@@ -48,7 +48,7 @@
             @include('common::textarea', [
                 'name' => 'photos',
                 'id' => 'photos',
-                'label' => 'URL addresses of photos, each on a new line',
+                'label' => 'URL addresses of photos, separated by commas',
             ])
         </div>
 
