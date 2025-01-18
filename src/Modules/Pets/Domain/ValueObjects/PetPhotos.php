@@ -34,7 +34,7 @@ readonly class PetPhotos
     private function setFromArray(array $value): void
     {
         $stringValues = array_filter($value, 'is_string');
-        $trimmedValues = array_filter($stringValues, 'trim');
+        $trimmedValues = array_map('trim', $stringValues);
 
         $this->values = array_filter($trimmedValues);
     }
