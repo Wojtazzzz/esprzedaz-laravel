@@ -4,8 +4,10 @@
 
 - PHP
 - Laravel
+- Composer
 - [Docker / Laravel Sail](https://laravel.com/docs/11.x/sail)
 - [Swagger API](https://petstore.swagger.io/)
+- Laravel Pint
 
 ## Requirements
 
