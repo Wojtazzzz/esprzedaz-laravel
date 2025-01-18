@@ -58,7 +58,13 @@ cp .env.example .env
 7. Setup frontend
 
 ```sh
-./vendor/bin/sail npm i && ./vendor/bin/sail npm run dev && ./vendor/bin/sail npm run build
+./vendor/bin/sail npm i && ./vendor/bin/sail npm run dev
+```
+
+7. Build frontend
+
+```sh
+./vendor/bin/sail npm run build
 ```
 
 5. App is available at http://localhost/
