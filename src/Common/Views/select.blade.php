@@ -11,8 +11,9 @@
 >
     @foreach($options as $val => $label)
         <option
-            value="{{ $val }}"
+            value="{{ $val }}" @isset($value)
             @selected($val == $value)
+            @endisset
         >
             {{ $label }}
         </option>
