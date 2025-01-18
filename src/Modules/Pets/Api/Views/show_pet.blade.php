@@ -7,6 +7,16 @@
         'content' => 'Pet not found',
     ])
 
+    @includeWhen(session('message'), 'common::alert', [
+        'type' => 'success',
+        'content' => session('message'),
+    ])
+
+    @includeWhen(session('error'), 'common::alert', [
+        'type' => 'error',
+        'content' => session('error'),
+    ])
+
     <form action="{{ route('pets.show') }}" method="GET" class="space-y-4">
         <div>
             @include('common::input_text', [
@@ -27,7 +37,20 @@
         </div>
     </form>
 
+
     @if ($pet)
+        <form action="{{ route('pets.destroy', ['pet' => $pet['id']]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <div>
+                @include('common::button', [
+                    'label' => 'Delete',
+                    'type' => 'submit',
+                ])
+            </div>
+        </form>
+
         <div class="space-y-4 mt-8">
             <div>
                 <span>Name: {{ $pet['name'] ?? '-' }}</span>

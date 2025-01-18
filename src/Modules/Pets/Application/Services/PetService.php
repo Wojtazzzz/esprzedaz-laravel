@@ -16,7 +16,6 @@ final readonly class PetService
 {
     public function __construct(private PetClient $petClient)
     {
-
     }
 
     /**
@@ -38,5 +37,10 @@ final readonly class PetService
     public function getPetById(string $id): array|false
     {
         return $this->petClient->getPetById($id);
+    }
+
+    public function deletePetById(string $id): bool
+    {
+        return $this->petClient->deletePetById($id);
     }
 }

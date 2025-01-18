@@ -10,4 +10,6 @@ interface PetClient
     public function create(string $category, string $name, array $photos, array $tags, string $status): bool;
 
     public function getPetById(string $petId): array|false;
+
+    public function deletePetById(string $petId): bool;
 }

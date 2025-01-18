@@ -64,4 +64,22 @@ final class PetSwaggerClient implements PetClient
             throw new InfrastructureException('Cannot connect to pets server.');
         }
     }
+
+    /**
+     * @throws InfrastructureException
+     */
+    public function deletePetById(string $petId): bool
+    {
+        try {
+            $response = $this->http->delete("/pet/{$petId}");
+
+            if ($response->notFound()) {
+                return false;
+            }
+
+            return $response->successful();
+        } catch (ConnectionException $e) {
+            throw new InfrastructureException('Cannot connect to pets server.');
+        }
+    }
 }
