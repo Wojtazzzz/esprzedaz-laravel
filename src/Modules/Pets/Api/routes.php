@@ -9,3 +9,5 @@ Route::resource('pets', PetController::class, [
     'only' => ['create', 'store', 'edit', 'update', 'destroy'],
 ]);
 Route::get('/pets/show', [PetController::class, 'show'])->name('pets.show');
+
+Route::redirect('/', '/pets/show');
