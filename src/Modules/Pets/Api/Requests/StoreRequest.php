@@ -48,7 +48,7 @@ class StoreRequest extends FormRequest
             'status' => [
                 'required',
                 'string',
-            ]
+            ],
         ];
     }
 

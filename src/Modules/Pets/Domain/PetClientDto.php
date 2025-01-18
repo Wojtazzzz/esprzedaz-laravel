@@ -6,7 +6,5 @@ namespace Src\Modules\Pets\Domain;
 
 final readonly class PetClientDto
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 }

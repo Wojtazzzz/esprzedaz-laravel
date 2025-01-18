@@ -13,9 +13,7 @@ final readonly class Pet
 {
     public function __construct(
         private PetClient $petClient
-    )
-    {
-    }
+    ) {}
 
     public function create(string $category, string $name, PetPhotos $photos, PetTags $tags, PetStatus $status): string|false
     {

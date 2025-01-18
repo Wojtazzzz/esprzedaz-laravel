@@ -17,7 +17,7 @@ readonly class PetStatus
     {
         $statusLower = strtolower($status);
 
-        if (!in_array($statusLower, ['available', 'unavailable'])) {
+        if (! in_array($statusLower, ['available', 'unavailable'])) {
             throw new DomainException("Invalid pet status: $status");
         }
 

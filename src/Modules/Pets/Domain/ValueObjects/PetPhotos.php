@@ -24,7 +24,7 @@ readonly class PetPhotos
 
     private function setFromString(string $value): void
     {
-        if (!$value) {
+        if (! $value) {
             $this->values = [];
         } else {
             $this->setFromArray(explode(',', $value));

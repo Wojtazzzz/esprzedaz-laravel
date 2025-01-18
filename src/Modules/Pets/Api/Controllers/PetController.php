@@ -18,10 +18,9 @@ class PetController extends Controller
 {
     public function __construct(
         private readonly PetService $petService
-    )
-    {
+    ) {
         $this->loadViews([
-            'pets' => __DIR__ . '/../Views/'
+            'pets' => __DIR__.'/../Views/',
         ]);
     }
 
@@ -35,6 +34,7 @@ class PetController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @throws DomainException
      */
     public function store(StoreRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
@@ -58,27 +58,29 @@ class PetController extends Controller
         }
 
         return view('pets::show_pet', [
-            'pet' => $pet
+            'pet' => $pet,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @throws Throwable
      */
     public function edit(string $id): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $pet = $this->petService->getPetById($id);
 
-        abort_if(!$pet, 404);
+        abort_if(! $pet, 404);
 
         return view('pets::edit_pet', [
-            'pet' => $pet
+            'pet' => $pet,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
+     *
      * @throws Throwable
      */
     public function update(UpdateRequest $request, string $id): RedirectResponse

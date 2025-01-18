@@ -48,7 +48,7 @@ class UpdateRequest extends FormRequest
             'status' => [
                 'required',
                 'string',
-            ]
+            ],
         ];
     }
 

@@ -20,12 +20,9 @@ final class PetSwaggerClient implements PetClient
     }
 
     /**
-     * @param string $category
-     * @param string $name
-     * @param string[] $photos
-     * @param string[] $tags
-     * @param string $status
-     * @return string|false
+     * @param  string[]  $photos
+     * @param  string[]  $tags
+     *
      * @throws InfrastructureException
      */
     public function createPet(string $category, string $name, array $photos, array $tags, string $status): string|false
@@ -33,20 +30,20 @@ final class PetSwaggerClient implements PetClient
         try {
             $response = $this->http->post('/pet', [
                 'category' => [
-                    'name' => $category
+                    'name' => $category,
                 ],
                 'name' => $name,
                 'photoUrls' => $photos,
-                'tags' => array_map(fn(string $tag) => ['name' => $tag], $tags),
+                'tags' => array_map(fn (string $tag) => ['name' => $tag], $tags),
                 'status' => $status,
             ]);
 
-            if (!$response->successful()) {
+            if (! $response->successful()) {
                 return false;
             }
 
             if ($response->json('id')) {
-                return (string)$response->json('id');
+                return (string) $response->json('id');
             }
 
             return false;
@@ -67,7 +64,7 @@ final class PetSwaggerClient implements PetClient
                 return false;
             }
 
-            return (array)$response->json();
+            return (array) $response->json();
         } catch (ConnectionException $e) {
             throw new InfrastructureException('Cannot connect to pets server.');
         }
@@ -98,22 +95,22 @@ final class PetSwaggerClient implements PetClient
     {
         try {
             $response = $this->http->post('/pet', [
-                "id" => $id,
+                'id' => $id,
                 'category' => [
-                    'name' => $category
+                    'name' => $category,
                 ],
                 'name' => $name,
                 'photoUrls' => $photos,
-                'tags' => array_map(fn(string $tag) => ['name' => $tag], $tags),
+                'tags' => array_map(fn (string $tag) => ['name' => $tag], $tags),
                 'status' => $status,
             ]);
 
-            if (!$response->successful()) {
+            if (! $response->successful()) {
                 return false;
             }
 
             if ($response->json('id')) {
-                return (string)$response->json('id');
+                return (string) $response->json('id');
             }
 
             return false;

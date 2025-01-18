@@ -16,9 +16,7 @@ use Src\Modules\Pets\Domain\ValueObjects\PetTags;
 
 final readonly class PetService
 {
-    public function __construct(private PetClient $petClient)
-    {
-    }
+    public function __construct(private PetClient $petClient) {}
 
     /**
      * @throws DomainException
@@ -42,7 +40,7 @@ final readonly class PetService
      */
     public function updatePet(UpdatePetDto $dto): void
     {
-        if (!$this->getPetById($dto->id)) {
+        if (! $this->getPetById($dto->id)) {
             throw new ApplicationException("Pet {$dto->id} not exists!");
         }
 

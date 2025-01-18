@@ -20,6 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::addNamespace('common', __DIR__ . '/../../src/Common/Views');
+        View::addNamespace('common', __DIR__.'/../../src/Common/Views');
     }
 }
