@@ -17,9 +17,9 @@ final readonly class Pet
     {
     }
 
-    public function create(string $category, string $name, PetPhotos $photos, PetTags $tags, PetStatus $status): void
+    public function create(string $category, string $name, PetPhotos $photos, PetTags $tags, PetStatus $status): string|false
     {
-        $this->petClient->createPet(
+        return $this->petClient->createPet(
             category: $category,
             name: $name,
             photos: $photos->values,
@@ -28,9 +28,9 @@ final readonly class Pet
         );
     }
 
-    public function update(string $id, string $category, string $name, PetPhotos $photos, PetTags $tags, PetStatus $status): void
+    public function update(string $id, string $category, string $name, PetPhotos $photos, PetTags $tags, PetStatus $status): string|false
     {
-        $this->petClient->updatePet(
+        return $this->petClient->updatePet(
             id: $id,
             category: $category,
             name: $name,

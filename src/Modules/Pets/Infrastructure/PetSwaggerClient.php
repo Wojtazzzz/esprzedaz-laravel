@@ -25,10 +25,10 @@ final class PetSwaggerClient implements PetClient
      * @param string[] $photos
      * @param string[] $tags
      * @param string $status
-     * @return bool
+     * @return string|false
      * @throws InfrastructureException
      */
-    public function createPet(string $category, string $name, array $photos, array $tags, string $status): bool
+    public function createPet(string $category, string $name, array $photos, array $tags, string $status): string|false
     {
         try {
             $response = $this->http->post('/pet', [
@@ -41,7 +41,15 @@ final class PetSwaggerClient implements PetClient
                 'status' => $status,
             ]);
 
-            return $response->successful();
+            if (!$response->successful()) {
+                return false;
+            }
+
+            if ($response->json('id')) {
+                return (string)$response->json('id');
+            }
+
+            return false;
         } catch (ConnectionException $e) {
             throw new InfrastructureException('Cannot connect to pets server.');
         }
@@ -86,7 +94,7 @@ final class PetSwaggerClient implements PetClient
     /**
      * @throws InfrastructureException
      */
-    public function updatePet(string $id, string $category, string $name, array $photos, array $tags, string $status): bool
+    public function updatePet(string $id, string $category, string $name, array $photos, array $tags, string $status): string|false
     {
         try {
             $response = $this->http->post('/pet', [
@@ -100,7 +108,15 @@ final class PetSwaggerClient implements PetClient
                 'status' => $status,
             ]);
 
-            return $response->successful();
+            if (!$response->successful()) {
+                return false;
+            }
+
+            if ($response->json('id')) {
+                return (string)$response->json('id');
+            }
+
+            return false;
         } catch (ConnectionException $e) {
             throw new InfrastructureException('Cannot connect to pets server.');
         }

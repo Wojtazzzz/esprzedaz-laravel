@@ -7,9 +7,9 @@ namespace Src\Modules\Pets\Domain;
 
 interface PetClient
 {
-    public function createPet(string $category, string $name, array $photos, array $tags, string $status): bool;
+    public function createPet(string $category, string $name, array $photos, array $tags, string $status): string|false;
 
-    public function updatePet(string $id, string $category, string $name, array $photos, array $tags, string $status): bool;
+    public function updatePet(string $id, string $category, string $name, array $photos, array $tags, string $status): string|false;
 
     public function getPetById(string $petId): array|false;
 

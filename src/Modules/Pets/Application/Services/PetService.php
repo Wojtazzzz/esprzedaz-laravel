@@ -23,11 +23,11 @@ final readonly class PetService
     /**
      * @throws DomainException
      */
-    public function createPet(CreatePetDto $dto): void
+    public function createPet(CreatePetDto $dto): string|false
     {
         $pet = new Pet($this->petClient);
 
-        $pet->create(
+        return $pet->create(
             category: $dto->category,
             name: $dto->name,
             photos: new PetPhotos($dto->photos),
