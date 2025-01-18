@@ -31,7 +31,7 @@
                 'name' => 'name',
                 'placeholder' => 'Rex',
                 'type' => 'text',
-                'value' => $pet['name']
+                'value' => $pet['name'] ?? ''
             ])
         </div>
 
@@ -42,7 +42,7 @@
                 'name' => 'category',
                 'placeholder' => 'Dog',
                 'type' => 'text',
-                'value' => $pet['category']['name']
+                'value' => $pet['category']['name'] ?? ''
             ])
         </div>
 
@@ -51,7 +51,7 @@
                 'name' => 'photos',
                 'id' => 'photos',
                 'label' => 'URL addresses of photos, separated by commas',
-                'value' => join(', ', $pet['photoUrls'])
+                'value' => join(', ', $pet['photoUrls'] ?? [])
             ])
         </div>
 
@@ -61,7 +61,7 @@
                 'label' => 'Tags, separated by commas',
                 'name' => 'tags',
                 'type' => 'text',
-                'value' => collect($pet['tags'])->map(fn ($tag) => $tag['name'])->join(', ')
+                'value' => collect($pet['tags'] ?? [])->map(fn ($tag) => $tag['name'])->join(', ')
             ])
         </div>
 
@@ -71,7 +71,7 @@
                 'label' => 'Status',
                 'name' => 'status',
                 'options' => ['available' => 'Available', 'unavailable' => 'Unavailable'],
-                'value' => $pet['status']
+                'value' => $pet['status'] ?? ''
             ])
         </div>
 
